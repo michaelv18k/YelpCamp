@@ -1,0 +1,69 @@
+<% layout('boilerplate') %>
+    <div class="row">
+
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Add a New Campground</h2>
+                    <form action="/campgrounds" method="POST" novalidate class="needs-validation"
+                        enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="Camp[title]" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid title.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="location" name="Camp[location]" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid location.
+                            </div>
+                        </div>
+                        <div class="mb-3 custom-file">
+                            <label for="formFileMultiple" class="form-label custom-file-label">Add Images</label>
+                            <input class="form-control custom-file-input" name="image" type="file" id="formFileMultiple"
+                                multiple>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="text" class="form-control" id="price" placeholder="0" name="Camp[price]"
+                                    required>
+                                <span class="input-group-text">.00</span>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Price.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea name="Camp[description]" id="description" class="form-control" rows="3"
+                                required></textarea>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid description.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-success btn-block" style="width:100%">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,37 @@
+<% layout('boilerplate') %>
+    <div id="map" style="width:100%; height:500px"></div>
+
+
+    <% for(let cp of cps){ %>
+        <div class="card mt-3">
+            <div class="row flex-column flex-xl-row">
+                <div class="col-xl-4">
+                    <img src="<%=cp.images[0].url %>" alt="" class="img-fluid">
+                </div>
+                <div class="col-xl-8">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <%=cp.title %>
+                        </h5>
+                        <p class="card-text">
+                            <%=cp.description %>
+                        </p>
+                        <p class="muted-text">
+                            <%=cp.location %>
+                        </p>
+                        <a class="btn btn-primary" style="width:250px" href="/campgrounds/<%=cp._id %>">View
+                            <%=cp.title %>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% } %>
+
+
+            <script>
+                let maptilerApiKey = '<%- process.env.MAPTILER_API_KEY %>';
+                const campgrounds = { features: JSON.parse(`<%-JSON.stringify(cps)%>`) };
+            </script>
+            <script src="/clusterMap.js"></script>

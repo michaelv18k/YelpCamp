@@ -1,0 +1,25 @@
+<% layout('boilerplate') %>
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4 ">
+            <div class="card shadow">
+                <img class="card-image-top"
+                    src="https://t3.ftcdn.net/jpg/04/99/51/66/360_F_499516678_S8nsHqTNZRfkJCEqBtUWOc9Oul9N5a1k.jpg"
+                    alt="">
+                <div class="card-body">
+                    <h2 class="text-center card-title">Welcome Back! <br> Please Log In</h2>
+                    <form action="/login" method="POST" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button class="btn btn-success" style="display:block; width:100%;">Login</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
