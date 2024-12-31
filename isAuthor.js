@@ -1,3 +1,5 @@
+const Camp = require('./models/camp')
+
 const isAuthor = async (req, res, next) => {
     const { id } = req.params
     const campground = await Camp.findById(id)
