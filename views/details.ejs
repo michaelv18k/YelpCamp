@@ -2,9 +2,10 @@
     <link rel="stylesheet" href="/stars.css">
 
     <div class="row">
-        <div class="col-6">
+        <!-- Left Column (Images and Details) -->
+        <div class="col-12 col-md-6">
             <div class="card mb-3">
-                <div id="carouselExample" class="carousel slide ">
+                <div id="carouselExample" class="carousel slide">
                     <div class="carousel-inner">
                         <% for(let img of cp.images){ %>
                             <div class="carousel-item active">
@@ -30,7 +31,7 @@
                         <%=cp.title %>
                     </h5>
                     <p class="card-text">
-                        <%=cp.description %>.
+                        <%=cp.description %> .
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -54,13 +55,17 @@
                     <% } %>
             </div>
         </div>
-        <div class="col-6">
-            <div id="map" style="width:400px; height:300px;"></div>
+
+        <!-- Right Column (Map and Reviews) -->
+        <div class="col-12 col-md-6">
+            <div id="map" style="width:100%; height:300px;"></div>
+
             <% if(currentUser){ %>
+                <!-- Review Form -->
                 <form action="/campgrounds/<%=cp._id%>/reviews" class="mb-3 needs-validation" method="POST" novalidate>
-                    <h1>leave a review:</h1>
+                    <h1>Leave a review:</h1>
                     <fieldset class="starability-basic">
-                        <legend> rating:</legend>
+                        <legend>Rating:</legend>
                         <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked
                             aria-label="No rating." />
                         <input type="radio" id="first-rate1" name="review[rating]" value="1" />
@@ -80,35 +85,38 @@
                         <textarea class="form-control" name="review[body]" id="body" cols="3" rows="3"
                             required></textarea>
                     </div>
-                    <button class="btn btn-success">submit</button>
+                    <button class="btn btn-success">Submit</button>
                 </form>
                 <% } %>
+
+                    <!-- Displaying Reviews -->
                     <div class="mb-3">
-                        <%for(rv of cp.reviews){%>
+                        <% for(rv of cp.reviews){ %>
                             <div class="card mb-2">
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         <p class="starability-result" data-rating="<%=rv.rating%>"> </p>
                                     </h5>
-                                    <div class="card-subtitle mb-2 text-muted"> By <%=rv.author.username %>
+                                    <div class="card-subtitle mb-2 text-muted">By <%=rv.author.username %>
                                     </div>
                                     <p class="card-text">
-                                        review:<%=rv.body %>
+                                        Review: <%=rv.body %>
                                     </p>
                                     <% if(currentUser && rv.author.equals(currentUser._id)){ %>
-                                        <form action="/campgrounds/<%=cp._id%>/reviews/><%=rv._id%>?_method=DELETE"
+                                        <form action="/campgrounds/<%=cp._id%>/reviews/<%=rv._id%>?_method=DELETE"
                                             method="POST">
                                             <button class="btn btn-sm btn-danger">Delete</button>
                                         </form>
                                         <% } %>
                                 </div>
                             </div>
-                            <%} %>
+                            <% } %>
                     </div>
         </div>
     </div>
+
     <script>
         const maptilerApiKey = '<%- process.env.MAPTILER_API_KEY %>';
-        let campground = '<%-JSON.stringify(cp)%>'
+        let campground = '<%- JSON.stringify(cp) %>';
     </script>
     <script src="/showPageMap.js"></script>
