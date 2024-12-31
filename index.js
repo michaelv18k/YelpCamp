@@ -28,10 +28,8 @@ app.engine('ejs', ejsMate)
 const dbUrl = process.env.MONGO_URL
 // const dbUrl=process.env.MONGO_URL
 
-mongoose.connect(dbUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).then(() => console.log('Connected to MongoDB'))
+mongoose.connect(dbUrl)
+    .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Connection failed', err));
 
 
