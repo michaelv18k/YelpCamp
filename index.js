@@ -25,11 +25,15 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.engine('ejs', ejsMate)
 
-const dbUrl = 'mongodb://localhost:27017/YELPCAMP'
+const dbUrl = process.env.MONGO_URL
 // const dbUrl=process.env.MONGO_URL
-mongoose.connect(dbUrl)
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error("connection failed"));
+
+mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Connection failed', err));
+
 
 app.use(express.static('public'));
 app.use(mongoSanitize())
